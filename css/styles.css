@@ -84,10 +84,6 @@ img {
   vertical-align: middle;
   border-style: none; }
 
-svg {
-  overflow: hidden;
-  vertical-align: middle; }
-
 button {
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
@@ -1011,7 +1007,7 @@ h3 {
       padding: 20px 0; } }
   #footer .site-logo {
     margin-top: 7px; }
-    #footer .site-logo svg {
+    #footer .site-logo img {
       width: 107px;
       height: 25px; }
   #footer .navbar-nav {
@@ -1056,11 +1052,11 @@ h3 {
     #landing {
       padding-bottom: 250px;
       margin-bottom: -240px; } }
-  #landing .landing-image svg {
+  #landing .landing-image img {
     width: 100%;
     height: initial; }
     @media (min-width: 992px) {
-      #landing .landing-image svg {
+      #landing .landing-image img {
         width: 120%;
         padding-top: 40px;
         margin-left: -20%; } }
@@ -1126,7 +1122,7 @@ h3 {
 
 #section-2 {
   background-color: #E9ECF3; }
-  #section-2 .landing-section--image svg {
+  #section-2 .landing-section--image img {
     width: 60%;
     height: 60%; }
 
@@ -1152,7 +1148,7 @@ h3 {
       color: #323353; }
   .landing-section--image {
     position: relative; }
-    .landing-section--image svg {
+    .landing-section--image img {
       display: block;
       width: 80%;
       height: 80%;
@@ -1172,7 +1168,7 @@ h3 {
     @media (min-width: 992px) {
       #features .features {
         padding: 0 20px; } }
-    #features .features--icon svg {
+    #features .features--icon img {
       margin-bottom: 30px; }
     #features .features--title h3 {
       color: #323353; }
