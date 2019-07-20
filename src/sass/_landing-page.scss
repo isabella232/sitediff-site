@@ -10,7 +10,7 @@
     margin-bottom: -240px;
   }
   .landing-image {
-    svg {
+    img {
       width: 100%;
       height: initial;
 
@@ -80,7 +80,7 @@
   background-color: $color-lightgray;
 
   .landing-section--image {
-    svg {
+    img {
       width: 60%;
       height: 60%;
     }
@@ -111,7 +111,7 @@
   &--image {
     position: relative;
 
-    svg {
+    img {
       display: block;
       width: 80%;
       height: 80%;
@@ -138,7 +138,7 @@
       padding: 0 20px;
     }
     &--icon {
-      svg {
+      img {
         margin-bottom: 30px;
       }
     }
