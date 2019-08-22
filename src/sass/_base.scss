@@ -112,3 +112,15 @@ h3 {
     }
   }
 }
+
+// Icons
+@font-face {
+  font-family: 'icons';
+  src: url('../font/icons.eot?54043623');
+  src: url('../font/icons.eot?54043623#iefix') format('embedded-opentype'),
+  url('../font/icons.woff?54043623') format('woff'),
+  url('../font/icons.ttf?54043623') format('truetype'),
+  url('../font/icons.svg?54043623#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

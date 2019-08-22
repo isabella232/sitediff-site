@@ -41,6 +41,10 @@
       input: './src/pug/*.pug',
       output: './web/'
     },
+    font: {
+      input: './src/font/**/*',
+      output: './web/font/'
+    },
     images: {
       input: './src/images/**/*',
       output: './web/images/'
@@ -137,6 +141,16 @@
   });
   gulp.task('js', gulp.parallel(['js-custom', 'js-vendor']));
 
+
+  /**
+   * Fonts.
+   */
+  gulp.task('font', () =>
+      gulp.src(config.font.input)
+          .pipe(gulp.dest(config.font.output))
+  );
+
+
   /**
    * Assets.
    *
@@ -182,7 +196,7 @@
     return url;
   });
 
-  gulp.task('build', gulp.series(['assets', 'html', 'js', 'css']));
+  gulp.task('build', gulp.series(['font', 'assets', 'html', 'js', 'css']));
 
   gulp.task('default', gulp.series(['build', gulp.parallel(['connect', 'watch'])]));
 
