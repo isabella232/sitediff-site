@@ -916,6 +916,13 @@ h3 {
       color: #383FDA;
       border-color: #FFFFFF; }
 
+@font-face {
+  font-family: 'icons';
+  src: url("../font/icons.eot?54043623");
+  src: url("../font/icons.eot?54043623#iefix") format("embedded-opentype"), url("../font/icons.woff?54043623") format("woff"), url("../font/icons.ttf?54043623") format("truetype"), url("../font/icons.svg?54043623#icons") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 #header {
   position: relative;
   background: -webkit-linear-gradient(230.17deg, #2A2B5F 0%, #3237A8 100%);
@@ -992,6 +999,30 @@ h3 {
                 transform: rotate(0); }
         #header .navbar-collapse a:hover {
           background-color: rgba(0, 0, 0, 0.1); } }
+  #header .ico-github:before {
+    content: '\f09b';
+    font-family: 'icons';
+    font-size: 1.75em;
+    font-style: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 
 #footer {
   position: absolute;
