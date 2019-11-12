@@ -1,4 +1,4 @@
-FROM node:8.9.1-alpine AS gulp
+FROM node:12-alpine AS gulp
 
 RUN apk update \
   && apk add gcc g++ zlib-dev make autoconf automake git file nasm
