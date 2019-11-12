@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+    nginx:
+      image: sitediff-site
+      container_name: sitediff-site
+      hostname: sitediff-site
+      build:
+        context: .
+      ports:
+        - 80:80
+        - 443:443
