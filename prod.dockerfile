@@ -6,11 +6,15 @@ RUN apk update \
 COPY code /var/build
 WORKDIR /var/build
 
-RUN npm install \
-  && npm install --global gulp
-
-RUN gulp build
+# Remove node_modules and web directory if present from development
+# Then reinstall node modules and gulp build
+RUN rm -Rf node_modules web \
+  && yarn install \
+  && npm install --global gulp \
+  && gulp build
 ###################################################################
 ###################################################################
 FROM nginx:stable-alpine
-COPY --from=gulp /var/build/web /usr/share/nginx/html
+
+COPY --from=gulp /var/build/web /srv/sitediff.io
+COPY configs/nginx-prod /etc/nginx

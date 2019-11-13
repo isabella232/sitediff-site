@@ -1,12 +1,25 @@
 version: '3.7'
 
 services:
-    nginx:
-      image: sitediff-site
-      container_name: sitediff-site
-      hostname: sitediff-site
+    prod:
+      image: sitediff-prod
+      container_name: sitediff-prod
+      hostname: sitediff-prod
       build:
         context: .
+        dockerfile: prod.dockerfile
       ports:
-        - 80:80
-        - 443:443
+        - 18180:443
+      restart: always
+
+    dev:
+      image: sitediff-dev
+      container_name: sitediff-dev
+      hostname: sitediff-dev
+      build:
+        context: .
+        dockerfile: dev.dockerfile
+      ports:
+        - 18180:80
+      volumes:
+        - ./code:/srv/sitediff.io:z
