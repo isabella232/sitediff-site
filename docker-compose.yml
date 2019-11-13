@@ -9,7 +9,7 @@ services:
         context: .
         dockerfile: prod.dockerfile
       ports:
-        - 18180:443
+        - 443:443
       restart: always
 
     dev:
