@@ -22,4 +22,4 @@ services:
       ports:
         - 18180:80
       volumes:
-        - ./code:/srv/sitediff.io:z
+        - ./code:/srv/sitediff.io:cached
