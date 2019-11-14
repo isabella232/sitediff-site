@@ -31,11 +31,11 @@ Two containers are defined in `docker-compose.yml`. One for the purpose of produ
 
 A second container for the purpose of development referred to as `dev`. This container includes the build dependencies of `npm`/`yarn` and `gulp`. Here we mount the codebase in `./code` and can run `gulp watch` to actively develop the site by modifying the contents of the `code` directory. Hard refreshing the page in the browser will then update the site.
 
-### Opening a Bash Shell in the Dev Container
+### Opening a Shell in the Dev Container
 
 
 ```
-docker-compose exec dev bash
+docker-compose exec dev sh
 
 ```
 
