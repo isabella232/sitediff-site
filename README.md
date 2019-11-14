@@ -1,16 +1,47 @@
-# sitediff-site
+# Sitediff-Site
 
 ## Deployment
 
 ```
-docker-compose build
-docker-compose up -d
+docker-compose up --build -d prod
 ```
 
-You may then access the site at http://localhost
+You may then access the site by visiting https://localhost
+
+**Note:** Nginx will refuse the connection because it only accepts TLS connections requested by Cloudflare. To bypass this when testing comment out the fallowing lines in `configs/nginx-prod/conf.d/default.conf` before building. You'll then need to bypass the cert error presented to you.
+
+```
+# Only allow Cloudflare to access this site
+ssl_client_certificate /etc/nginx/certs/origin-pull-ca.pem;
+ssl_verify_client on;
+```
 
 
 ## Development
+
+```
+docker-compose up --build -d dev
+docker-compose exec dev yarn install
+docker-compose exec dev gulp build
+```
+
+You may then visit http://localhost:18180 to access the site.
+
+Two containers are defined in `docker-compose.yml`. One for the purpose of production and/or distributing this site as a docker image independent of any code. This is referrer to as `prod`. It does not mount volumes, all code lives as a static assets within the image. Code is compiled by Docker during the build process and assets used only for the purpose of compiling are discarded and not committed in the resulting image. Updates to the code require a rebuild of the image.
+
+A second container for the purpose of development referred to as `dev`. This container includes the build dependencies of `npm`/`yarn` and `gulp`. Here we mount the codebase in `./code` and can run `gulp watch` to actively develop the site by modifying the contents of the `code` directory. Hard refreshing the page in the browser will then update the site.
+
+### Opening a Bash Shell in the Dev Container
+
+
+```
+docker-compose exec dev bash
+
+```
+
+**Notes:** `npm install` does not work in volume mounts. Instead we must use `yarn install` in it's place. `yarn` version locks dependencies with the `yarn.lock` file. To install the latest version of these dependencies while still respecting the version constrains in `package.json` run `yarn upgrade` within the container.
+
+### Layout
 
 All custom code goes into `code/src/` folder. The `web/` folder is generated during the build process and is excluded from the repo.
 
@@ -19,16 +50,23 @@ All custom code goes into `code/src/` folder. The `web/` folder is generated dur
   - pug
   - sass
 
-### Images
+### Gulp
+
+To run `gulp watch` open a dedicated terminal window and run the below command. Once you are done you may run `Ctrl + C` to exit `gulp watch`.
+
+```
+docker-compose exec dev gulp watch
+
+```
+
+#### Images
 
 All images/assets such as .png .jpg .svg goes into this folder. It will be copied over to `web/images` on build.
 
-### Pug
+#### Pug
 
-Template engine Pug will be used to generate HTML. All files within root of `code/src/pug/` directory will be made into a .html file of the same name over the `web` folder and can be accessed by visiting `http://localhost/<file_name>.html`. All internal folders won't be compiled and will serve only as resources for includes. Gulp watch will trigger for changes in any .pug file in `src/pug` or it's subfolders.
+Template engine Pug will be used to generate HTML. All files within root of `code/src/pug/` directory will be made into a .html file of the same name over the `web` folder and can be accessed by visiting `http://localhost/<file_name>.html`. All internal folders won't be compiled and will serve only as resources for includes. `gulp watch` will watch for changes in any `.pug` file in `src/pug` or it's subfolders.
 
-### Sass
+#### Sass
 
-Gulp will compile only `code/src/sass/styles.scss` into `web/css/styles.css`. This file should only have includes for other resources. Gulp watch will trigger for changes in any .scss file in `src/sass/` or it's subfolders.
-
-The current layout of this repo is focused on production deployment. For use as a development environment some changes would need to be made for you to be able to run `gulp watch` as presently this repository expects you to apply any coding changes and then rebuild the Docker image to get the site up and running.
+Gulp will compile only `code/src/sass/styles.scss` into `web/css/styles.css`. This file should only have includes for other resources. Gulp watch will trigger for changes in any `.scss` file in `src/sass/` or it's subfolders.
