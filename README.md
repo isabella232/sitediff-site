@@ -6,15 +6,7 @@
 docker-compose up --build -d prod
 ```
 
-You may then access the site by visiting https://localhost
-
-**Note:** Nginx will refuse the connection because it only accepts TLS connections requested by Cloudflare. To bypass this when testing comment out the fallowing lines in `configs/nginx-prod/conf.d/default.conf` before building. You'll then need to bypass the cert error presented to you.
-
-```
-# Only allow Cloudflare to access this site
-ssl_client_certificate /etc/nginx/certs/origin-pull-ca.pem;
-ssl_verify_client on;
-```
+You may then access the site by visiting https://localhost:18180
 
 
 ## Development

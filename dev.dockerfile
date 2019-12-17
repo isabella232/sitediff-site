@@ -5,7 +5,7 @@ RUN apk update \
   && mkdir -p /run/nginx \
   && npm install --global gulp
 
-COPY configs/nginx-dev /etc/nginx
+COPY configs/nginx /etc/nginx
 WORKDIR /srv/sitediff.io
 
 CMD ["nginx", "-g", "daemon off;"]

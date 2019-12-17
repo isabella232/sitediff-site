@@ -16,5 +16,5 @@ RUN rm -Rf node_modules web \
 ###################################################################
 FROM nginx:stable-alpine
 
-COPY --from=gulp /var/build/web /srv/sitediff.io
-COPY configs/nginx-prod /etc/nginx
+COPY --from=gulp /var/build/web /srv/sitediff.io/web
+COPY configs/nginx /etc/nginx
